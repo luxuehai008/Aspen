@@ -137,6 +137,5 @@ function newHtmlWebpackPlugins(){
            chunks: [filename_no_extension],
        }))
     }
-    console.log(plugins)
     return plugins
 }
