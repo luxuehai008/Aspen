@@ -1,19 +1,18 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //压缩分离css
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //html模板文件
 const CleanWebpackPlugin = require('clean-webpack-plugin'); //打包前先清空
-
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const glob = require('glob');
-
 
 module.exports = {
   mode:"development",
   entry:getEnteries(),
   output:{
     path:path.resolve(__dirname,"dist"),
-    filename:"js/[name].[hash:6].js",
-    publicPath:'/js'
+    filename:"assets/js/[name].[hash:6].js",
+    publicPath:'/'
   },
   module: {
     rules:[
@@ -36,17 +35,12 @@ module.exports = {
          use:[
            {
              loader:MiniCssExtractPlugin.loader,
-             options: {
-               outputPath: 'css', //image存放单独目录
-               publicPath:'/css'
-             }
            },
            'css-loader',
-           'postcss-loader'
-         ], //postcss-loader 处理CSS3属性前缀
+           'postcss-loader'//postcss-loader 处理CSS3属性前缀
+         ],
          include:path.join(__dirname,'./src'),
          exclude:/node_modules/
-
       },
       {
         test:/\.(jpg|png|gif|svg)/, //在js中引入图片
@@ -54,8 +48,8 @@ module.exports = {
           loader:'url-loader',
           options:{
             limit:1024,
-            outputPath: 'images', //image存放单独目录
-            publicPath:'/images'
+            outputPath: 'assets/images', //image存放单独目录
+            publicPath:'/assets/images'
           }
         }
       },
@@ -71,7 +65,6 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
         },'css-loader','less-loader']
       }
-
     ]
   },
   devServer: { //配置本地服务器
@@ -83,7 +76,7 @@ module.exports = {
   externals: { //映入外部库时不打包
     jquery: 'jQuery'
   },
-  watch: true, //实时监控
+  //watch: true, //实时监控
   watchOptions: {
     ignored: /node_modules/, //忽略不用监听变更的目录
     poll:1000, //每秒询问的文件变更的次数
@@ -92,8 +85,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename:'css/[id].css'
+      filename: 'assets/css/[name].css'
     }),
     ...newHtmlWebpackPlugins()
 
@@ -103,40 +95,41 @@ module.exports = {
 
 
 
-
-
-
-
-//获取多入口文件
 function getEnteries(){
-  //获取page下的文件夹
-  let dirs = path.resolve(__dirname, './src/page');
-  let files = glob.sync(dirs + '/**/*.js')
-  let map = {};
-
-  for (let i = 0; i < files.length; i++) {
-      let filePath = files[i];
-      let filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'));
-      map[filename] = filePath;
+  let obj = {};
+  function get(dir) {
+      try {
+          let stat = fs.statSync(dir);
+          if (stat.isFile()) {
+            let extname = path.extname(dir);
+            if(extname == ".js"){
+              let fileName = dir.substring(dir.lastIndexOf('\\') + 1, dir.lastIndexOf('.'));
+              obj[fileName] = dir;
+            }
+          } else {
+              let files=fs.readdirSync(dir);
+              files.map(file => path.join(dir,file)).forEach(item=>get(item));
+          }
+      } catch (e) {
+      }
   }
-  return map;
+  get(path.join(__dirname,'./src/page'));
+  return obj;
 }
 
-//
+
 function newHtmlWebpackPlugins(){
     let dirs = path.resolve(__dirname, './src/page')
     let htmls = glob.sync(dirs + '/**/*.html')
     let plugins=[]
     for (let i = 0; i < htmls.length; i++) {
         let filePath = htmls[i];
-        let filename_no_extension = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'));
-        let filename=filename_no_extension.concat('.html')
+        let filename = filePath.substring(filePath.indexOf("\/page\/")+6);
        plugins.push(new HtmlWebpackPlugin({
            filename: filename,
            template: "html-withimg-loader!"+path.resolve(__dirname,filePath),
-           chunks: [filename_no_extension],
+           chunks: [filename],
        }))
     }
-    console.log(plugins)
     return plugins
 }
