@@ -1,3 +1,40 @@
-<div class="header">
-  <img class="logo" src="../images/logo.png"> header
+<div class="page-header">
+  <strong class="logo">
+    <img src="../images/aspen-logo.svg" alt="" width="185" class="desktop-only">
+    <img src="../images/aspen-logo-mob.svg" alt="" class="mobile-only">
+  </strong>
+  <div class="toggle-nav">
+    <span class="glyphicon glyphicon-menu-hamburger mobile-only"></span>
+  </div>
+  <div class="language-dropdown-wrapper">
+    <label class="label">Select Language:</label>
+    <div class="language-dropdown">
+      <span class="select-lang"> English (United States)</span>
+      <ul class="lang-content">
+        <li><a href="###">English (United States) </a></li>
+        <li><a href="###">Deutsch (Deutschland) </a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="header-search">
+    <div class="search-content">
+      <form class="search-form" action="" method="get">
+        <div class="search">
+          <label class="label" for="search">
+            <span class="glyphicon glyphicon-search desktop-only">搜索</span>
+            <span class="glyphicon glyphicon-search mobile-only"></span>
+          </label>
+          <div class="control">
+            <input id="search" class="input-text" type="text" placeholder="Enter your search term"  maxlength="128" autocomplete="off">
+            <div class="actions">
+              <button type="submit" title="Search" class="action">
+                <span>Search</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+#include("./nav.html");

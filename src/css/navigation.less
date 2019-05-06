@@ -1,0 +1,260 @@
+.page-nav {
+  max-width: 100%;
+  background: #f0f0f0;
+  position: relative;
+  z-index: 2;
+  height: 50px;
+
+  ul {
+    font-size: 0;
+  }
+
+  a {
+    color: #333;
+    display: block;
+    padding: 0 35px 0 20px;
+    margin-bottom: 11px;
+    font-size: 16px;
+
+    &.top-category {
+      padding: 25px 35px 20px 20px;
+      color: #575757;
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  .level0 {
+    display: inline-block;
+    position: relative;
+    background: #f0f0f0;
+    &:last-child{
+      padding-right: 184px;
+    }
+  }
+
+  a.level-top {
+    color: #00584d;
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 50px;
+    padding: 0 12px 0 22px;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    width: auto;
+    position: relative;
+    z-index: 2;
+    background: #f0f0f0;
+  }
+
+  .submenu-wrapper {
+    position: absolute;
+    left: 0;
+    top: -500px;
+    overflow: hidden;
+    width: 100vw;
+    &.over{
+        top:50px;
+        transition: top 0.4s ease 0.2s;
+    }
+    li {
+      min-width: 230px;
+
+      &.parent {
+        float: left;
+      }
+    }
+  }
+
+  .submenu {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    background: #fff;
+    width: auto;
+    display: inline-block;
+    border: 1px solid #d1d1d1;
+    box-sizing: border-box;
+
+    &.no-border {
+      border: none;
+      padding-top: 0;
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .page-nav {
+    width: 100%;
+    max-width: 350px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    .mobile-only {
+      display: block;
+    }
+
+    .submenu {
+      display: none;
+    }
+
+    .page-nav-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300%;
+      height: 0;
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+
+    .page-nav-con {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 33.33333%;
+      height: 100%;
+    }
+
+    .page-nav-child {
+      left: 33.33333%;
+
+      .nav-items {
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+
+    .page-nav-grandson {
+      left: 66.66666%;
+
+      .nav-items {
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+
+    .nav-item-switch {
+      color: #00584d;
+      font-weight: 700;
+      cursor: default;
+
+    }
+
+    .nav-items {
+      display: block;
+      height: 50px;
+      line-height: 50px;
+      text-align: left;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 0;
+
+      a {
+        display: inline-block;
+        padding:0;
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .nav-item-switch {
+        color: #00584d;
+        font-weight: 700;
+      }
+
+      .language-flags {
+        position: absolute;
+        top: 0;
+        right: 70px;
+
+        .flag {
+          width: 32px;
+          height: 24px;
+          margin-bottom: -6px;
+        }
+      }
+
+      span.back {
+        cursor: pointer;
+        position: absolute;
+        top: 7px;
+        left: 15px;
+        color: #e97200;
+
+        &::before {
+          font-family: "Glyphicons Halflings";
+          content: "\e258";
+          line-height: 35px;
+          height: auto;
+          display: block;
+          font-size: 22px;
+          transform:rotate(-180deg);
+        }
+      }
+
+      span.nav-close {
+        cursor: pointer;
+        position: absolute;
+        top: 7px;
+        right: 25px;
+        color: #e97200;
+
+        &::before {
+          font-family: "Glyphicons Halflings";
+          content: "\e014";
+          line-height: 35px;
+          height: auto;
+          display: block;
+          font-size: 18px;
+          font-weight: normal;
+        }
+      }
+
+      .menu-nav-title {
+        color: #00584d;
+        font-weight: 700;
+      }
+    }
+
+    .nav-content {
+      border-top: 1px solid #ccc;
+
+      li {
+        line-height: 55px;
+        height: 55px;
+        width: 100%;
+        font-weight: 600;
+        a {
+          padding: 0 40px 0 15px !important;
+          color: #00584d !important;
+          text-decoration: none !important;
+          line-height: 55px;
+          background: none;
+        }
+      }
+      .parent {
+        > a {
+          &::after {
+            content: "\e258";
+            position: absolute;
+            right: 30px;
+            font-family: "Glyphicons Halflings";
+          }
+        }
+      }
+    }
+  }
+}

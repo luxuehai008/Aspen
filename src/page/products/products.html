@@ -1,18 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="keywords" content="">
-    <title>首页</title>
+#include("../../template/doctype.html");
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>产品</title>
+#include("../../template/general-css.html");
 </head>
+
 <body>
-<!--引入通用的导航部分-->
-#include("../../template/header.html")
-<!--页面的正式内容在这里-->
-<div id="root">
-    <p>首页</p>
-    <img src="../../images/home_slider_2a.jpg">
-</div>
-#include("../../template/footer.html")
+  <div class="page-wrapper">
+    #include("../../template/header.html")
+    <div class="page-main" id="maincontent">
+      <div class="top-container">
+        <a class="click-phone mobile-only" href="tel:1-800-295-2776">Speak to a Customer Service Rep!</a>
+        <div class="top-banner">
+          <img src="../../images/top-banner.jpg" />
+        </div>
+      </div>
+      <div class="widget products-columns">
+        <div class="container-fluid">
+          <div class="sidebar">
+            #include("../../template/sidebar.html")
+          </div>
+          <div class="column-main">
+            <div class="wrap_element">
+              <div class="product_block-info">
+                <div class="product-info_element">
+                  <img src="https://www.aspenmp.com/media/wysiwyg/products/products_01.jpg" alt="Upper Spine">
+                  <div class="promos-item-text">
+                    <h5>Upper Spine</h5>
+                    <a href="">
+                      <p class="arrow arrow-white">Learn More</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="product-info_element">
+                  <img src="https://www.aspenmp.com/media/wysiwyg/products/products_02.jpg" alt="Lower Spine">
+                  <div class="promos-item-text">
+                    <h5>Upper Spine</h5>
+                    <a href="">
+                      <p class="arrow arrow-white">Learn More</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="product-lines">
+                <div class="top_headline">Product Lines</div>
+                <div class="products-lists">
+                  <div class="model">
+                    <div class="list">
+                      <img src="../../images/acute_cervical.png" alt="">
+                      <a href="###" class="arrow">Vista Upper Spine</a>
+                    </div>
+                  </div>
+                  <div class="model">
+                    <div class="list">
+                      <img src="../../images/acute_cervical.png" alt="">
+                      <a href="###" class="arrow">Vista Upper Spine</a>
+                    </div>
+                  </div>
+                  <div class="model">
+                    <div class="list">
+                      <img src="../../images/acute_cervical.png" alt="">
+                      <a href="###" class="arrow">Vista Upper Spine</a>
+                    </div>
+                  </div>
+                  <div class="model">
+                    <div class="list">
+                      <img src="../../images/acute_cervical.png" alt="">
+                      <a href="###" class="arrow">Vista Upper Spine</a>
+                    </div>
+                  </div>
+                  <div class="model">
+                    <div class="list">
+                      <img src="../../images/acute_cervical.png" alt="">
+                      <a href="###" class="arrow">Vista Upper Spine</a>
+                    </div>
+                  </div>
+                  <div class="model">
+                    <div class="list">
+                      <img src="../../images/acute_cervical.png" alt="">
+                      <a href="###" class="arrow">Vista Upper Spine</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="patient-shop">
+              <div class="patient-shop-text"><strong class="patient-shop-title">Accessories</strong>
+                <p class="patient-shop-description">Need Replacement Parts or Hot / Cold Packs ?</p>
+              </div>
+              <a class="patient-shop-btn" href="###"> <span>Shop Now</span> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    #include("../../template/footer.html")
+  </div>
+
 </body>
+
 </html>
